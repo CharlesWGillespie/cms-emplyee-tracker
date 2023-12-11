@@ -1,14 +1,12 @@
 const mysql = require("mysql2");
 const inquirer = require("inquirer");
 
-const db = mysql
-  .createConnection({
-    host: "localhost",
-    user: "root",
-    password: "myRoot",
-    database: "company_db",
-  })
-  .promise();
+const db = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "myRoot",
+  database: "company_db",
+}).promise();
 
 const dbPrompt = [
   {
@@ -37,31 +35,31 @@ const promptUser = async () => {
   try {
     const data = await inquirer.prompt(dbPrompt);
     const { selectedFunction } = data;
-    handleSelectedFunction(selectedFunction);
+    processUserInput(selectedFunction);
   } catch (err) {
     console.error(err);
   }
 };
 
-const handleSelectedFunction = (selectedFunction) => {
-  switch (selectedFunction) {
+const processUserInput = (userChoice) => {
+  switch (userChoice) {
     case "View all departments":
-      viewAllDepartments();
+      displayAllDepartments();
       break;
     case "View all roles":
-      viewAllRoles();
+      showAllRoles();
       break;
     case "View all employees":
-      viewAllEmployees();
+      displayAllEmployees();
       break;
     case "Add a department":
-      addNewDepartment();
+      createNewDepartment();
       break;
     case "Add a role":
-      addNewRole();
+      createNewRole();
       break;
     case "Add an employee":
-      addNewEmployee();
+      createNewEmployee();
       break;
     case "Update an employee role":
       updateEmployeeRole();
@@ -70,16 +68,16 @@ const handleSelectedFunction = (selectedFunction) => {
       updateEmployeeManager();
       break;
     case "View employees by manager":
-      viewEmployeesByManager();
+      showEmployeesByManager();
       break;
     case "View employees by department":
-      viewEmployeesByDepartment();
+      showEmployeesByDepartment();
       break;
     case "Delete departments, roles, and employees":
       deleteData();
       break;
     case "View total utilized budget of a department":
-      viewUtilizedBudget();
+      displayUtilizedBudget();
       break;
     case "Exit":
       console.clear();
@@ -87,12 +85,11 @@ const handleSelectedFunction = (selectedFunction) => {
   }
 };
 
-// GET ALL QUERIES
-const viewAllDepartments = async () => {
+const displayAllDepartments = async () => {
   console.clear();
   try {
     const [results, info] = await db.query(
-      "SELECT id, names AS Department FROM department"
+      'SELECT id, names AS Department FROM department'
     );
     console.clear();
     console.table(results);
@@ -103,12 +100,21 @@ const viewAllDepartments = async () => {
   }
 };
 
-const viewAllRoles = async () => {
-  console.clear();
+const showAllRoles = async () => {
   try {
-    const [results, info] = await db.query(
-      "SELECT role.id, title AS Title, salary, department.names AS Department FROM roles AS role INNER JOIN department ON role.department_id=department.id"
-    );
+    const query = `
+      SELECT role.id, 
+      title AS Title, 
+      salary, 
+      department.names 
+      AS Department
+      FROM roles 
+      AS role
+      INNER JOIN department ON role.department_id = department.id
+    `;
+
+    const [results, info] = await db.query(query);
+
     console.clear();
     console.table(results);
     promptUser();
@@ -118,7 +124,7 @@ const viewAllRoles = async () => {
   }
 };
 
-const viewAllEmployees = async () => {
+const displayAllEmployees = async () => {
   console.clear();
   try {
     const [results, info] = await db.query(`
@@ -148,7 +154,7 @@ const viewAllEmployees = async () => {
   }
 };
 
-const addNewDepartment = async () => {
+const createNewDepartment = async () => {
   console.clear();
   const questions = [
     {
@@ -174,14 +180,15 @@ const addNewDepartment = async () => {
     promptUser();
   } catch (err) {
     console.error(err);
+    promptUser();
   }
 };
 
-const addNewRole = async () => {
+const createNewRole = async () => {
   console.clear();
   const questions = [
     {
-      message: "Enter the title of the new role:",
+      message: "Enter the title of role:",
       type: "input",
       name: "newTitleName",
     },
@@ -218,7 +225,7 @@ const addNewRole = async () => {
   }
 };
 
-const addNewEmployee = async () => {
+const createNewEmployee = async () => {
   console.clear();
   const questions = [
     {
@@ -281,6 +288,7 @@ const addNewEmployee = async () => {
     promptUser();
   }
 };
+
 const updateEmployeeRole = async () => {
   console.clear();
   const questions = [
@@ -339,7 +347,9 @@ const getListOfCurrentManagers = async () => {
     const [currentManagers, info] = await db.query(
       "SELECT first_name, last_name FROM employee WHERE manager_id IS NULL"
     );
-    const managerNames = currentManagers.map((name) => `${name.first_name}`);
+    const managerNames = currentManagers.map(
+      (name) => `${name.first_name} ${name.last_name}`
+    );
     managerNames.unshift("No Manager");
     return managerNames;
   } catch (err) {
@@ -352,7 +362,9 @@ const getListOfCurrentEmployees = async () => {
     const [results, info] = await db.query(
       "SELECT first_name, last_name FROM employee"
     );
-    const employeeNames = results.map((name) => `${name.first_name}`);
+    const employeeNames = results.map(
+      (name) => `${name.first_name} ${name.last_name}`
+    );
     return employeeNames;
   } catch (err) {
     console.error(err);
@@ -391,7 +403,8 @@ const getEmployeeId = async (employee) => {
       "SELECT id FROM employee WHERE first_name=?",
       employee
     );
-    const { id } = results[0];
+    const { id } = results
+
     return id;
   } catch (err) {
     console.error(err);
