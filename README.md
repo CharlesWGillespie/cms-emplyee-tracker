@@ -1,4 +1,4 @@
-# CMS EMPLOYEE TRACKER [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+# CMS-EMPLOYEE-TRACKER [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Description
   A user-friendly command line application tailored for companies, enabling effortless addition, updating, and deletion of various departments, employee, employees roles, and salaries. This application interacts with a locally stored database, streamlining administrative tasks for enhanced efficiency.
