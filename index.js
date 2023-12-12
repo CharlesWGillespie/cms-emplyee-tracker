@@ -1,12 +1,14 @@
 const mysql = require("mysql2");
 const inquirer = require("inquirer");
 
-const db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "myRoot",
-  database: "company_db",
-}).promise();
+const db = mysql
+  .createConnection({
+    host: "localhost",
+    user: "root",
+    password: "myRoot",
+    database: "company_db",
+  })
+  .promise();
 
 const dbPrompt = [
   {
@@ -89,7 +91,7 @@ const displayAllDepartments = async () => {
   console.clear();
   try {
     const [results, info] = await db.query(
-      'SELECT id, names AS Department FROM department'
+      "SELECT id, names AS Department FROM department"
     );
     console.clear();
     console.table(results);
@@ -171,12 +173,6 @@ const createNewDepartment = async () => {
       "INSERT INTO department (names) VALUES (?)",
       newDepartmentName
     );
-
-    console.clear();
-    console.log("");
-    console.log(`${newDepartmentName} has been added as a department.`);
-    console.log("");
-
     promptUser();
   } catch (err) {
     console.error(err);
@@ -403,7 +399,7 @@ const getEmployeeId = async (employee) => {
       "SELECT id FROM employee WHERE first_name=?",
       employee
     );
-    const { id } = results
+    const { id } = results;
 
     return id;
   } catch (err) {
@@ -546,7 +542,6 @@ const deleteDepartment = async () => {
     await db.query("DELETE FROM department WHERE names = ?", [
       departmentToDelete,
     ]);
-    console.log(`${departmentToDelete} has been deleted.`);
     promptUser();
   } catch (err) {
     console.error(err);
