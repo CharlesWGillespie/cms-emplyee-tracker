@@ -46,13 +46,13 @@ const promptUser = async () => {
 const processUserInput = (userChoice) => {
   switch (userChoice) {
     case "View all departments":
-      displayAllDepartments();
+      showDepartments();
       break;
     case "View all roles":
       showAllRoles();
       break;
     case "View all employees":
-      displayAllEmployees();
+      showEmployees();
       break;
     case "Add a department":
       createNewDepartment();
@@ -87,7 +87,7 @@ const processUserInput = (userChoice) => {
   }
 };
 
-const displayAllDepartments = async () => {
+const showDepartments = async () => {
   console.clear();
   try {
     const [results, info] = await db.query(
@@ -126,7 +126,7 @@ const showAllRoles = async () => {
   }
 };
 
-const displayAllEmployees = async () => {
+const showEmployees = async () => {
   console.clear();
   try {
     const [results, info] = await db.query(`
@@ -197,7 +197,7 @@ const createNewRole = async () => {
       message: "Select the department the new role will be apart of:",
       type: "list",
       name: "newRoleDepartment",
-      choices: getListOfCurrentDepartments,
+      choices: listDepartments,
     },
   ];
   try {
@@ -316,7 +316,7 @@ const updateEmployeeRole = async () => {
   }
 };
 
-const getListOfCurrentDepartments = async () => {
+const listDepartments = async () => {
   try {
     const [currentDepartments, info] = await db.query(
       "SELECT * FROM department"
@@ -473,7 +473,7 @@ const viewEmployeesByDepartment = async () => {
       message: "Select the department to view employees:",
       type: "list",
       name: "selectedDepartment",
-      choices: getListOfCurrentDepartments,
+      choices: listDepartments,
     },
   ];
 
@@ -532,7 +532,7 @@ const deleteDepartment = async () => {
       message: "Select the department to delete:",
       type: "list",
       name: "departmentToDelete",
-      choices: getListOfCurrentDepartments,
+      choices: listDepartments,
     },
   ];
 
@@ -604,7 +604,7 @@ const viewUtilizedBudget = async () => {
       message: "Select the department to view the total utilized budget:",
       type: "list",
       name: "selectedDepartmentBudget",
-      choices: getListOfCurrentDepartments,
+      choices: listDepartments,
     },
   ];
 

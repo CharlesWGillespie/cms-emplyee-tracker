@@ -1,7 +1,7 @@
 # CMS EMPLOYEE TRACKER [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Description
-  A command line application disigned for the use of a company to easily add, update and delete different departments, employee roles, and employee salarys in a database that is stored locally.
+  A user-friendly command line application tailored for companies, enabling effortless addition, updating, and deletion of various departments, employee, employees roles, and salaries. This application interacts with a locally stored database, streamlining administrative tasks for enhanced efficiency.
 
 ## Table of Contents
 1. [Description](#description)
@@ -21,11 +21,11 @@
 
 
 ## Contribution
-Node, Inquirer, mysql, mysql2, JavaScript
-
-## Testing
-
-
+NodeJS
+Inquirer
+mysql
+mysql2
+JavaScript
 
 ## License:
 
@@ -33,7 +33,7 @@ This project is licensed under the MIT License - see the [MIT License](https://o
 
 
 ## Questions
-For questions the project, I can be contacted through GitHub or via email.
+For questions about this project, I can be contacted through GitHub or via email.
 
 GitHub - https://github.com/CharlesWGillespie
 
