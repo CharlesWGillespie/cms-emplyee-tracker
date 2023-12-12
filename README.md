@@ -8,15 +8,16 @@
 2. [Installation](#installation)
 3. [Usage](#usage)
 4. [Contributing](#contributing)
-5. [Testing](#testing)
-6. [License](#license)
-7. [Questions](#questions)
+5. [License](#license)
+6. [Questions](#questions)
 
 
 ## Installation
-To properly use this application first download all files in the git repository. Then on your local computer install inquirer by using npm i in the terminal, followed by downloading the mysql2 package.
+1. **Install Inquirer:** Execute `npm i inquirer@8.2.4` in the terminal.
+2. **Install MySQL2:** Execute `npm install --save mysql2` in the terminal.
+3. **Setup Database:** Open an integrated terminal in `schema.sql`, connect to MySQL using `mysql -u root -p`, enter the password, and run `source schema.sql; source seeds.sql;`.
+4. **Run the Application:** Open an integrated terminal in `index.js` and start the app with `node index.js`.
 
-## Usage
 
 
 ## Contribution
