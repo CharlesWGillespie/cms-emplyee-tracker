@@ -1,7 +1,4 @@
-# CMS EMPLOYEE TRACKER [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
-## Description
-  A user-friendly command line application tailored for companies, enabling effortless addition, updating, and deletion of various departments, employee, employees roles, and salaries. This application interacts with a locally stored database, streamlining administrative tasks for enhanced efficiency.
+# CMS-EMPLOYEE-TRACKER [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Table of Contents
 1. [Description](#description)
@@ -11,6 +8,9 @@
 5. [License](#license)
 6. [Questions](#questions)
 
+
+## Description
+  A user-friendly command line application tailored for companies, enabling effortless addition, updating, and deletion of various departments, employee, employees roles, and salaries. This application interacts with a locally stored database, streamlining administrative tasks for enhanced efficiency.
 
 ## Installation
 1. **Install Inquirer:** Execute `npm i inquirer@8.2.4` in the terminal.
