@@ -11,6 +11,8 @@
 5. [License](#license)
 6. [Questions](#questions)
 
+## Preview
+
 ## Installation
 1. **Install Inquirer:** Execute `npm i inquirer@8.2.4` in the terminal.
 2. **Install MySQL2:** Execute `npm install --save mysql2` in the terminal.
