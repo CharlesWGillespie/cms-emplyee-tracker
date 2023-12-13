@@ -13,6 +13,10 @@
 
 ## Preview
 
+
+https://github.com/CharlesWGillespie/cms-emplyee-tracker/assets/143773137/3dd7df6a-039c-4b2b-b033-79043e93b4ab
+
+
 ## Installation
 1. **Install Inquirer:** Execute `npm i inquirer@8.2.4` in the terminal.
 2. **Install MySQL2:** Execute `npm install --save mysql2` in the terminal.
