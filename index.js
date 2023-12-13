@@ -79,7 +79,7 @@ const processUserInput = (userChoice) => {
       deleteData();
       break;
     case "View total utilized budget of a department":
-      displayUtilizedBudget();
+      viewUtilizedBudget();
       break;
     case "Exit":
       console.clear();
